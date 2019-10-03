@@ -1,9 +1,12 @@
 package Main;
 
+import Main.Algorithms.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Driver implements Runnable{
 
@@ -12,7 +15,9 @@ public class Driver implements Runnable{
     static int i;
     static int j;
     boolean running = true;
+    int size = Entities.entitieslist.size();
 
+    private Algorithms algorithms;
 
 
     public Driver() throws IOException {
@@ -41,23 +46,16 @@ public class Driver implements Runnable{
             g.setColor(Entities.entitieslist.get(i).c);
             g.fillRect((100+i*Entities.w), 100, Entities.w, Entities.entitieslist.get(i).h);
         }
-        /*
-        for (int i = 0; i < Entities.entitieslist.size(); i++){
-            g.setColor(Entities.entitieslist.get(i).c);
-            g.fillRect((100+i*Entities.w), 100, Entities.w, Entities.h);
-        }
-
-         */
         g.dispose();
         bs.show();
     }
 
-    public static void updare(){
-        if (Entities.entitieslist.get(i).getId() < Entities.entitieslist.get(j).getId()){
-            Entities temp1 = Entities.entitieslist.get(i);
-            Entities.entitieslist.set(i, Entities.entitieslist.get(j));
-            Entities.entitieslist.set(j, temp1);
-        }
+    public void initialize(){
+        algorithms = new BubbleSort();
+    }
+
+    public void update(ArrayList<Entities> arr){
+        algorithms.update(arr, i, j);
 
     }
 
@@ -65,16 +63,17 @@ public class Driver implements Runnable{
     @Override
     public void run() {
         BasicTimer timer = new BasicTimer(240);
+        initialize();
         while (running) {
             timer.sync();
             render();
-            updare();
+            update(Entities.entitieslist);
             j++;
-            if (j == 100-1){
+            if (j == size-1){
                 i++;
-                j = i;
+                j = 0;
             }
-            if (i == 100-1){
+            if (i == size-1){
                 running = false;
             }
 
