@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public abstract class Algorithms {
 
-    public abstract void update(ArrayList<Entities> arr, int i, int j);
+    public abstract void update(ArrayList<Entities> arr);
+
+    public abstract void increase();
 
 }

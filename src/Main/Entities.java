@@ -9,6 +9,8 @@ import static java.awt.Color.HSBtoRGB;
 public class Entities {
 
     static int w = 7;
+
+
     int h;
     int id;
     Color c;
@@ -36,16 +38,11 @@ public class Entities {
         return id;
     }
 
+    public Color getC() {
+        return c;
+    }
 
-    public static Comparator<Entities> mycomporator = new Comparator<Entities>() {
-        public int compare(Entities o1, Entities o2){
-            int id1 = o1.getId();
-            int id2 = o2.getId();
-
-            return id1 - id2;
-        }
-
-    };
-
-
+    public void setC(Color c) {
+        this.c = c;
+    }
 }

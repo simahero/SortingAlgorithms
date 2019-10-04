@@ -12,10 +12,7 @@ public class Driver implements Runnable{
 
     private JFrame frame;
     private static Canvas canvas;
-    static int i;
-    static int j;
     boolean running = true;
-    int size = Entities.entitieslist.size();
 
     private Algorithms algorithms;
 
@@ -55,28 +52,23 @@ public class Driver implements Runnable{
     }
 
     public void update(ArrayList<Entities> arr){
-        algorithms.update(arr, i, j);
+        algorithms.update(arr);
 
+    }
+    public void increase(){
+        algorithms.increase();
     }
 
 
     @Override
     public void run() {
-        BasicTimer timer = new BasicTimer(240);
+        BasicTimer timer = new BasicTimer(6000);
         initialize();
         while (running) {
             timer.sync();
             render();
             update(Entities.entitieslist);
-            j++;
-            if (j == size-1){
-                i++;
-                j = 0;
-            }
-            if (i == size-1){
-                running = false;
-            }
-
+            increase();
         }
     }
 
