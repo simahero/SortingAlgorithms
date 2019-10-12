@@ -10,24 +10,52 @@ import java.util.ArrayList;
 
 public class Driver implements Runnable{
 
+    //FRAME
     private JFrame frame;
     private static Canvas canvas;
-    boolean running = true;
+    private static JPanel panel;
+    //BUTTONS
+    private JButton start;
+    public static boolean bstart = false;
+    private JButton shuffle;
+    public static boolean bshuffle = false;
+    private JComboBox choose;
+    //DRIVER VARIABLES
+    Control control = new Control();
+    public static Algorithms algorithms;
 
-    private Algorithms algorithms;
 
-
-    public Driver() throws IOException {
+    public Driver() {
         frame = new JFrame("Sorting Algorithms");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout());
         frame.add(canvas = new Canvas());
-        frame.setSize(920,800);
+        canvas.setSize(800, 800);
+        frame.add(panel = new JPanel());
+
+        start = new JButton("SORT!");
+        start.setActionCommand("sort");
+        start.addActionListener(control);
+        panel.add(start);
+
+        shuffle = new JButton("SHUFFLE!");
+        shuffle.setActionCommand("shuffle");
+        shuffle.addActionListener(control);
+        panel.add(shuffle);
+
+        String[] algorithms = {"Bubble Sort!", "Insertion Sort!", "Selection Sort!"};
+        choose = new JComboBox<>(algorithms);
+        choose.setSelectedIndex(0);
+        choose.addActionListener(control);
+        panel.add(choose);
+
+        panel.setBackground(Color.BLACK);
+        frame.setSize(1200,800);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         new Thread(this).start();
 
     }
-
 
     private void render() {
         BufferStrategy bs = canvas.getBufferStrategy();
@@ -52,7 +80,6 @@ public class Driver implements Runnable{
 
     public void update(ArrayList<Entities> arr){
         algorithms.update(arr);
-
     }
 
     public void increase(){
@@ -63,15 +90,24 @@ public class Driver implements Runnable{
     public void run() {
         BasicTimer timer = new BasicTimer(30);
         initialize();
-        while (running) {
+        Algorithms.selectItem();
+        while (true) {
             timer.sync();
             render();
-            update(Entities.entitieslist);
-            increase();
+            if (bstart) {
+                update(Entities.entitieslist);
+                increase();
+            }
+            if (bshuffle){
+                for (int i = 0; i < 100; i++) {
+                    control.shuffle(Entities.entitieslist);
+                }
+                bshuffle = false;
+            }
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Entities.init();
         Control.shuffle(Entities.entitieslist);
         new Driver();

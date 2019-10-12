@@ -1,5 +1,6 @@
 package Main.Algorithms;
 
+import Main.BasicTimer;
 import Main.Entities;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class SelectionSort extends Algorithms {
 
     @Override
     public void update(ArrayList<Entities> arr) {
+        BasicTimer.changeFPS(3000);
         n = arr.size();
         int min_index = arr.get(i).getId();
 

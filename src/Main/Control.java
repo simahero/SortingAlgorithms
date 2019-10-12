@@ -1,29 +1,40 @@
 package Main;
 
+import Main.Algorithms.Algorithms;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Control {
+public class Control implements ActionListener {
+
+    public static String selectedItem = "Bubble Sort!";
 
     public static void shuffle(ArrayList<Entities> arr) {
         Collections.shuffle(arr);
     }
 
-    public static void sort(ArrayList<Entities> arr, ArrayList<Integer> order) {
-        for (int i = 0; i < order.size() && i < arr.size(); i++) {
-            for (int j = 0; j < i; j++) {
-                if (order.get(i) < order.get(j)) {
-                    int temp = order.get(i);
-                    order.set(i, order.get(j));
-                    order.set(j, temp);
-                    Entities temp1 = arr.get(i);
-                    arr.set(i, arr.get(j));
-                    arr.set(j, temp1);
-                }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() instanceof JCheckBox) {
+            if (e.getSource() instanceof JComboBox) {
+                JComboBox cb = (JComboBox) e.getSource();
+                selectedItem = (String) cb.getSelectedItem();
+                Algorithms.selectItem();
             }
         }
-
+        if (e.getSource() instanceof JButton){
+            if (e.getActionCommand().equals("sort")){
+                Driver.bstart = true;
+                Driver.bshuffle = false;
+            }
+            if (e.getActionCommand().equals("shuffle")){
+                Driver.bstart = false;
+                Driver.bshuffle = true;
+            }
+        }
     }
-
 }
