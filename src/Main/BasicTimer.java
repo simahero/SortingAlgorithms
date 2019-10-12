@@ -1,7 +1,7 @@
 package Main;
 
 public class BasicTimer {
-    private int fps;
+    private static int fps;
     private long timeThen;
     boolean newVersion = true;
 
@@ -18,7 +18,7 @@ public class BasicTimer {
         }
     }
 
-    public void changeFPS(int frameRate) {
+    public static void changeFPS(int frameRate) {
         fps = frameRate;
     }
 

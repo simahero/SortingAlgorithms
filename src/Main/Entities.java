@@ -2,15 +2,11 @@ package Main;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Comparator;
-
 import static java.awt.Color.HSBtoRGB;
 
 public class Entities {
 
     static int w = 7;
-
-
     int h;
     int id;
     Color c;

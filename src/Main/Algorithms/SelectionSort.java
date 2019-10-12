@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class SelectionSort extends Algorithms {
 
     static int n;
-    static int i;
+    static int i = 0;
     static int j;
 
     @Override
@@ -15,8 +15,12 @@ public class SelectionSort extends Algorithms {
         n = arr.size();
         int min_index = arr.get(i).getId();
 
-        if (arr.get(j).getId() < arr.get(min_index).getId()) {
-            min_index = arr.get(j).getId();
+        if (j < 0 || j >= n) {
+            return;
+        } else {
+            if (arr.get(j).getId() < arr.get(min_index).getId()) {
+                min_index = arr.get(j).getId();
+            }
         }
 
         Entities temp = arr.get(min_index);
@@ -35,4 +39,5 @@ public class SelectionSort extends Algorithms {
                 j = i+1;
             }
         }
+
     }

@@ -29,7 +29,6 @@ public class Driver implements Runnable{
     }
 
 
-
     private void render() {
         BufferStrategy bs = canvas.getBufferStrategy();
         if (bs == null){
@@ -55,14 +54,14 @@ public class Driver implements Runnable{
         algorithms.update(arr);
 
     }
+
     public void increase(){
         algorithms.increase();
     }
 
-
     @Override
     public void run() {
-        BasicTimer timer = new BasicTimer(6000);
+        BasicTimer timer = new BasicTimer(30);
         initialize();
         while (running) {
             timer.sync();
@@ -71,7 +70,6 @@ public class Driver implements Runnable{
             increase();
         }
     }
-
 
     public static void main(String[] args) throws IOException {
         Entities.init();

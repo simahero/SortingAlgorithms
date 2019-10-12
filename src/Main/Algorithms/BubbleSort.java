@@ -1,5 +1,6 @@
 package Main.Algorithms;
 
+import Main.BasicTimer;
 import Main.Entities;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ public class BubbleSort extends Algorithms {
 
     @Override
     public void update(ArrayList<Entities> arr) {
+        BasicTimer.changeFPS(5000);
+        //BasicTimer.fps = 6000;
         n = arr.size();
         if (arr.get(j).getId() < arr.get(j+1).getId()){
             Entities temp = arr.get(j);
