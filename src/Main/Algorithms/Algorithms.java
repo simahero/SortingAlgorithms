@@ -21,4 +21,6 @@ public abstract class Algorithms {
     public abstract void update(ArrayList<Entities> arr);
 
     public abstract void increase();
+
+    public abstract void reset();
 }

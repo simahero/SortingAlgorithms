@@ -2,7 +2,6 @@ package Main.Algorithms;
 
 import Main.BasicTimer;
 import Main.Entities;
-
 import java.util.ArrayList;
 
 public class SelectionSort extends Algorithms {
@@ -30,16 +29,20 @@ public class SelectionSort extends Algorithms {
         arr.set(i, temp);
     }
 
-
-        @Override
-        public void increase () {
-            if (j < n) {
-                j++;
-            }
-            if (j == n - 1) {
-                i++;
-                j = i+1;
-            }
+    @Override
+    public void increase() {
+        if (j < n) {
+            j++;
         }
+        if (j == n - 1) {
+            i++;
+            j = i + 1;
+        }
+    }
+
+    @Override
+    public void reset() {
 
     }
+
+}

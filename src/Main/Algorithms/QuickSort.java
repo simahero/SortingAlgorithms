@@ -22,6 +22,11 @@ public class QuickSort extends Algorithms {
 
     }
 
+    @Override
+    public void reset() {
+
+    }
+
     Entities partition(ArrayList<Entities> arr, int low, int high) {
         Entities pivot = arr.get(high);
         int i = (low - 1);

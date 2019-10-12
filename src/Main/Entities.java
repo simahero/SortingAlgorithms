@@ -4,12 +4,19 @@ import java.awt.*;
 import java.util.ArrayList;
 import static java.awt.Color.HSBtoRGB;
 
+/**************************************
+ *
+ *    AN ENTYT REPRESENTS A COLORFUL
+ *       RECTANGLE ON THE SCREEN
+ *
+ **************************************/
+
 public class Entities {
 
-    static int w = 7;
-    int h;
-    int id;
-    Color c;
+    static int w = 7; //width of an entity
+    int h;            //height of an entity
+    int id;           //ID used to sort
+    Color c;          //Color of an entyt
 
     static ArrayList<Entities> entitieslist = new ArrayList<Entities>();
 
@@ -28,7 +35,6 @@ public class Entities {
             }
         }
     }
-
 
     public int getId() {
         return id;

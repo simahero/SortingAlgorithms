@@ -1,14 +1,12 @@
 package Main;
 
 import Main.Algorithms.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class Driver implements Runnable{
+public class Driver implements Runnable {
 
     //FRAME
     private JFrame frame;
@@ -50,7 +48,7 @@ public class Driver implements Runnable{
         panel.add(choose);
 
         panel.setBackground(Color.BLACK);
-        frame.setSize(1200,800);
+        frame.setSize(1620, 800);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         new Thread(this).start();
@@ -59,7 +57,7 @@ public class Driver implements Runnable{
 
     private void render() {
         BufferStrategy bs = canvas.getBufferStrategy();
-        if (bs == null){
+        if (bs == null) {
             canvas.createBufferStrategy(2);
             return;
         }
@@ -68,21 +66,21 @@ public class Driver implements Runnable{
         g.fillRect(0, 0, 920, 800);
         for (int i = 0; i < Entities.entitieslist.size(); i++) {
             g.setColor(Entities.entitieslist.get(i).c);
-            g.fillRect((100+i*Entities.w), 100, Entities.w, Entities.entitieslist.get(i).h);
+            g.fillRect((100 + i * Entities.w), 100, Entities.w, Entities.entitieslist.get(i).h);
         }
         g.dispose();
         bs.show();
     }
 
-    public void initialize(){
-        algorithms = new BubbleSort();
+    public void initialize() {
+        algorithms = new InsertionSort();
     }
 
-    public void update(ArrayList<Entities> arr){
+    public void update(ArrayList<Entities> arr) {
         algorithms.update(arr);
     }
 
-    public void increase(){
+    public void increase() {
         algorithms.increase();
     }
 
@@ -98,10 +96,10 @@ public class Driver implements Runnable{
                 update(Entities.entitieslist);
                 increase();
             }
-            if (bshuffle){
-                for (int i = 0; i < 100; i++) {
-                    control.shuffle(Entities.entitieslist);
-                }
+            if (bshuffle) {
+                control.shuffle(Entities.entitieslist);
+                algorithms.reset();
+
                 bshuffle = false;
             }
         }
@@ -114,4 +112,3 @@ public class Driver implements Runnable{
     }
 
 }
-

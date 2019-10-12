@@ -2,9 +2,7 @@ package Main.Algorithms;
 
 import Main.BasicTimer;
 import Main.Entities;
-
 import java.util.ArrayList;
-
 
 public class BubbleSort extends Algorithms {
 
@@ -34,6 +32,11 @@ public class BubbleSort extends Algorithms {
             j = 0;
             i++;
         }
+    }
+
+    @Override
+    public void reset() {
+
     }
 }
 
